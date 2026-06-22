@@ -53,44 +53,44 @@
 
 ```mermaid
 graph TD
-    subgraph 输入层
-        A1[文本直接输入]
-        A2[公众号文章 URL]
+    subgraph s_input["输入层"]
+        A1["文本直接输入"]
+        A2["公众号文章 URL"]
     end
 
-    A2 -->|fetcher.py 抓取清洗| A3[正文纯文本]
-    A1 --> B0[待分析文本]
+    A2 -->|"fetcher.py 抓取清洗"| A3["正文纯文本"]
+    A1 --> B0["待分析文本"]
     A3 --> B0
 
-    subgraph 分析Agent[analyzer.py 分析 Agent]
-        B0 --> C1[1.多角度 Query 拆解<br/>decompose_query]
-        C1 --> C2[2.分角度检索+去重<br/>retrieve_candidates]
-        C2 --> C3[3.大模型判断<br/>judge]
+    subgraph s_agent["analyzer.py 分析 Agent"]
+        B0 --> C1["1. 多角度 Query 拆解<br/>decompose_query"]
+        C1 --> C2["2. 分角度检索去重<br/>retrieve_candidates"]
+        C2 --> C3["3. 大模型判断<br/>judge"]
     end
 
-    subgraph 检索层[search.py 检索模块]
-        D1[(法条库 laws<br/>2278 条)]
-        D2[(判例库 cases<br/>12 案例)]
+    subgraph s_search["search.py 检索模块"]
+        D1[("法条库 laws<br/>2278 条")]
+        D2[("判例库 cases<br/>12 案例")]
     end
 
-    C2 -->|search 混合检索| D1
-    C3 -->|search_cases 判例检索| D2
+    C2 -->|"search 混合检索"| D1
+    C3 -->|"search_cases 判例检索"| D2
 
-    subgraph 知识库构建[build_knowledge_base.py 离线建库]
-        E1[11 部法律法规 docx] -->|按第X条切分| E2[条文切块]
-        E2 -->|bge 向量化| D1
-        E3[cases.json 12 判例] -->|类型+言论+标准 向量化| D2
+    subgraph s_kb["build_knowledge_base.py 离线建库"]
+        E1["11 部法律法规 docx"] -->|"按第 X 条切分"| E2["条文切块"]
+        E2 -->|"bge 向量化"| D1
+        E3["cases.json 12 判例"] -->|"类型言论标准向量化"| D2
     end
 
-    C3 --> F[结构化判定结果<br/>是否违法/风险/法条/证据/参考判例/升级风险]
-    F -->|generate_report| G[Word 报告 .docx]
-    F -->|HTML 渲染| H[Gradio 网页结果区]
+    C3 --> F["结构化判定结果<br/>违法与否 · 风险 · 法条 · 证据 · 判例 · 升级"]
+    F -->|"generate_report"| G["Word 报告 .docx"]
+    F -->|"HTML 渲染"| H["Gradio 网页结果区"]
 
-    subgraph 大模型
-        LLM[DeepSeek API<br/>deepseek-chat]
+    subgraph s_llm["大模型"]
+        LLM["DeepSeek API<br/>deepseek-chat"]
     end
-    C1 -.调用.-> LLM
-    C3 -.调用.-> LLM
+    C1 -.->|"调用"| LLM
+    C3 -.->|"调用"| LLM
 ```
 
 ### 技术栈
