@@ -41,7 +41,7 @@ jieba.setLogLevel(20)  # 关闭 jieba 启动日志
 # ----------------------------------------------------------------------------
 # 仅依赖本文件所在目录，文件夹改名也无需改代码
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LAW_DIR = os.path.join(BASE_DIR, "国家法律法规数据")
+LAW_DIR = os.path.join(BASE_DIR, "law_data")
 CHROMA_DIR = os.path.join(BASE_DIR, "chroma_db")
 MODEL_NAME = "BAAI/bge-small-zh-v1.5"
 QUERY_PREFIX = "为这个句子生成表示以用于检索相关文章："
@@ -50,8 +50,8 @@ RRF_K = 60          # RRF 融合常数
 POOL = 50           # 每路召回候选池大小
 
 # 判例库（与 "laws" 并列的第二个 ChromaDB 集合）。
-# cases.json 由典型案例 docx 结构化提取而来（见 典型案例及判决/cases.json）。
-CASES_JSON = os.path.join(BASE_DIR, "典型案例及判决", "cases.json")
+# cases.json 由典型案例 docx 结构化提取而来（见 case_data/cases.json）。
+CASES_JSON = os.path.join(BASE_DIR, "case_data", "cases.json")
 CASE_COLLECTION_NAME = "cases"
 CASE_VEC_PATH = os.path.join(CHROMA_DIR, "case_vectors.npy")
 CASE_CHUNK_PATH = os.path.join(CHROMA_DIR, "case_chunks.json")

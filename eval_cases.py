@@ -8,7 +8,7 @@
   - 计算准确率 = 判断正确数 / 总数
 
 运行：USE_TF=0 python eval_cases.py
-结果同时写出到 典型案例及判决/eval_result.json
+结果同时写出到 case_data/eval_result.json
 """
 
 import os
@@ -28,8 +28,8 @@ except Exception:
 from analyzer import analyze
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CASES_JSON = os.path.join(BASE_DIR, "典型案例及判决", "cases.json")
-OUT_JSON = os.path.join(BASE_DIR, "典型案例及判决", "eval_result.json")
+CASES_JSON = os.path.join(BASE_DIR, "case_data", "cases.json")
+OUT_JSON = os.path.join(BASE_DIR, "case_data", "eval_result.json")
 
 
 def main():
