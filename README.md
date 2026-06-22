@@ -22,7 +22,7 @@
 
 ### 本地部署
 ```bash
-git clone https://github.com/你的用户名/LexiGuard-CN.git
+git clone https://github.com/MgAlNa3NO4/LexiGuard-CN.git
 cd LexiGuard-CN
 pip install -r requirements.txt
 
