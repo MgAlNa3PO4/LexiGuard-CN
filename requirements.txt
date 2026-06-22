@@ -1,0 +1,33 @@
+# LexiGuard-CN —— 本地依赖（混合检索版）
+# Python 3.9+
+
+# docx 文本提取
+python-docx==1.2.0
+
+# 向量化模型（中文检索：BAAI/bge-small-zh-v1.5）
+sentence-transformers==5.1.2
+transformers==4.49.0
+torch==2.7.0
+huggingface-hub==0.31.2
+
+# 本地向量数据库
+# 注意：1.x（Rust 后端）在本机 Windows/Py3.9 下 HNSW 索引无法跨进程落盘，
+# 故锁定到稳定的 0.5.23。向量另存为 chroma_db 内的 .npy sidecar，search.py 从中读取。
+chromadb==0.5.23
+
+# 混合检索：BM25 关键词召回 + 中文分词
+rank_bm25==0.2.2
+jieba==0.42.1
+
+# 数值计算
+numpy==1.26.4
+
+# DeepSeek API 调用
+requests==2.32.3
+
+# 公众号文章抓取与解析
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# 网页界面
+gradio==4.44.1
